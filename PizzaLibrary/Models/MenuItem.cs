@@ -14,6 +14,9 @@ namespace PizzaLibrary.Models
 
         public MenuItem(string name, double price, string description, MenuType menuType)
         {
+            counter++;
+            _no = counter;
+
             Name = name;
             Price = price;
             Description = description;
@@ -25,5 +28,11 @@ namespace PizzaLibrary.Models
         public int No { get { return _no; } }
         public double Price {  get; set; }
         public MenuType TheMenuType { get; set; }
+
+        public override string ToString()
+        {
+            return $"Nr. {_no}: {Name}      {TheMenuType}" +
+                $"\n{Description}        {Price}";
+        }
     }
 }

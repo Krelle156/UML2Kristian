@@ -37,12 +37,10 @@ namespace PizzaLibrary.Models
 
         public override string ToString()
         {
-            return $"{Name} has customer id: {ID}" +
-                $"\nThey are registered with delivery address {Address}" +
-                $"\nThe phone number: {Mobile}" +
-                $"\nThey are{(ClubMember ? " " : " not ")}a member of our club" +
-                $"\n" +
-                $"\nA total of {counter} customers have registered during the system's lifetime";
+            return $"{Name} har kundeid: {ID}" +
+                $"\nDe er registreret på adressen {Address}" +
+                $"\nTlf: {Mobile}" +
+                $"\nDe er{(ClubMember ? " " : " ikke ")}medlem af pizzariaets klub";
         }
     }
 }

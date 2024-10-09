@@ -12,26 +12,35 @@ namespace PizzaLibrary.Services
     {
         private List<MenuItem> _menuItemList;
 
-        public int Count => throw new NotImplementedException();
+        public int Count { get { return _menuItemList.Count; } }
 
         public void AddMenuItem(MenuItem menuItem)
         {
-            throw new NotImplementedException();
+            for(int i = 0;  i < _menuItemList.Count; i++)
+            {
+                if (_menuItemList[i].TheMenuType == menuItem.TheMenuType) _menuItemList.Insert(i, menuItem); //The intention is to group the positions of the menuitems by type
+                return;
+            }
+            _menuItemList.Add(menuItem);
         }
 
         public List<MenuItem> GetAll()
         {
-            throw new NotImplementedException();
+            return _menuItemList;
         }
 
         public MenuItem GetMenuItemByNo(int no)
         {
-            throw new NotImplementedException();
+            if (no > _menuItemList.Count) return null;
+            return _menuItemList[no-1];
         }
 
         public void PrintAllMenuItems()
         {
-            throw new NotImplementedException();
+            foreach(MenuItem menuItem in _menuItemList)
+            {
+                Console.WriteLine(menuItem.ToString());
+            }
         }
 
         public void RemoveMenuItem(int no)

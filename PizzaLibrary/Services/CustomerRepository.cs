@@ -41,9 +41,10 @@ namespace PizzaLibrary.Services
 
         public void printAllCustomers()
         {
+            Console.WriteLine($"Der er {Count} kunder i systemet, de er:");
             foreach (Customer customer in _customers.Values)
             {
-                Console.WriteLine(customer.Name);
+                Console.WriteLine("\n"+customer.ToString());
             }
         }
 
