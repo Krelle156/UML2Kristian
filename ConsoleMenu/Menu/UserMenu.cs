@@ -1,4 +1,5 @@
 ﻿using ConsoleMenu.Controllers.MenuItems;
+using PizzaLibrary.Data;
 using PizzaLibrary.Services;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace ConsoleMenu.Menu
     {
         private static string mainMenuChoices = "\t1.Vis Pizzamenu\n\t2.Vis Kunder\n\t3.Add Customer\n\tQ.Afslut\n\n\tIndtast valg:";
 
-        private CustomerRepository _customerRepository = new CustomerRepository();
-        private MenuItemRepository _menuItemRepository = new MenuItemRepository();
+        private CustomerRepository _customerRepository = new CustomerRepository(MockData.CustomerData);
+        private MenuItemRepository _menuItemRepository = new MenuItemRepository(MockData.MenuItemData);
         private static string ReadChoice(string choices)
         {
             Console.Clear();

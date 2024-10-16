@@ -13,12 +13,22 @@ namespace PizzaLibrary.Services
         #region Instance fields
         private Dictionary<string, Customer> _customers;
         #endregion
-        public int Count { get { return _customers.Count; } }
 
+        #region Properties
+        public int Count { get { return _customers.Count; } }
+        #endregion
+
+        #region Constructors
         public CustomerRepository()
         {
-            _customers = Data.MockData.CustomerData;
+            _customers = new Dictionary<string, Customer>();
         }
+
+        public CustomerRepository(Dictionary<string, Customer> repo)
+        {
+            _customers = repo;
+        }
+        #endregion
 
         #region Methods
 
@@ -27,6 +37,7 @@ namespace PizzaLibrary.Services
             if (_customers.ContainsKey(customer.Mobile)) return;
             _customers[customer.Mobile] = customer;
         }
+
 
         public List<Customer> GetAll()
         {
@@ -64,7 +75,7 @@ namespace PizzaLibrary.Services
             string result = $"Der er registreret {Count} kunder. De er:\n";
             foreach (Customer customer in _customers.Values)
             {
-                result += "\n" + customer.ToString();
+                result += "\n\n" + customer.ToString();
             }
             return result;
         }

@@ -11,15 +11,27 @@ namespace PizzaLibrary.Services
 {
     public class MenuItemRepository : IMenuItemRepository
     {
+        #region instance fields
         private List<MenuItem> _menuItemList;
+        #endregion
 
+        #region Constructors
         public MenuItemRepository()
         {
-            _menuItemList = MockData.MenuItemData;
+            _menuItemList = new List<MenuItem>();
         }
 
-        public int Count { get { return _menuItemList.Count; } }
+        public MenuItemRepository(List<MenuItem> repo)
+        {
+            _menuItemList = repo;
+        }
+        #endregion
 
+        #region Properties
+        public int Count { get { return _menuItemList.Count; } }
+        #endregion
+
+        #region Metods
         public void AddMenuItem(MenuItem menuItem)
         {
             for(int i = 0;  i < _menuItemList.Count; i++)
@@ -53,10 +65,7 @@ namespace PizzaLibrary.Services
 
         public void PrintAllMenuItems()
         {
-            foreach(MenuItem menuItem in _menuItemList)
-            {
-                Console.WriteLine(menuItem.ToString());
-            }
+            Console.WriteLine(ToString());
         }
 
         public void RemoveMenuItem(int no)
@@ -69,9 +78,10 @@ namespace PizzaLibrary.Services
             string result = $"Der er {Count} genstande på menuen, de er:";
             foreach (MenuItem menuItem in _menuItemList)
             {
-                result += "\n" + menuItem.ToString();
+                result += "\n\n" + menuItem.ToString();
             }
             return result;
         }
+        #endregion
     }
 }
