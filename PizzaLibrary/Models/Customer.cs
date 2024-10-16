@@ -15,7 +15,7 @@ namespace PizzaLibrary.Models
         private static int counter;
         #endregion
 
-
+        #region Constructors
         public Customer(string name, string mobile, string address)
         {
             _id = counter;
@@ -26,7 +26,9 @@ namespace PizzaLibrary.Models
 
             counter++;
         }
+        #endregion
 
+        #region Properties
         public string Address { get; set; }
         public bool ClubMember { get; set; }
 
@@ -34,7 +36,9 @@ namespace PizzaLibrary.Models
 
         public string Mobile { get; set; }
         public string Name {  get; set; }
+        #endregion
 
+        #region Methods
         public override string ToString()
         {
             return $"{Name} har kundeid: {ID}" +
@@ -42,5 +46,6 @@ namespace PizzaLibrary.Models
                 $"\nTlf: {Mobile}" +
                 $"\nDe er{(ClubMember ? " " : " ikke ")}medlem af pizzariaets klub";
         }
+        #endregion
     }
 }
