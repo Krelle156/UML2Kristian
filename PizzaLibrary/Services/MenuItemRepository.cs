@@ -1,4 +1,5 @@
-﻿using PizzaLibrary.Interfaces;
+﻿using PizzaLibrary.Data;
+using PizzaLibrary.Interfaces;
 using PizzaLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ namespace PizzaLibrary.Services
     public class MenuItemRepository : IMenuItemRepository
     {
         private List<MenuItem> _menuItemList;
+
+        public MenuItemRepository()
+        {
+            _menuItemList = MockData.MenuItemData;
+        }
 
         public int Count { get { return _menuItemList.Count; } }
 
@@ -29,6 +35,16 @@ namespace PizzaLibrary.Services
             return _menuItemList;
         }
 
+        public List<MenuItem> GetAbovePrice(double price)
+        {
+            List<MenuItem> resultList = new List<MenuItem>();
+            foreach (MenuItem menuItem in _menuItemList)
+            {
+                if (price > menuItem.Price) resultList.Add(menuItem);
+            }
+            return resultList;
+        }
+
         public MenuItem GetMenuItemByNo(int no)
         {
             if (no > _menuItemList.Count) return null;
@@ -45,7 +61,17 @@ namespace PizzaLibrary.Services
 
         public void RemoveMenuItem(int no)
         {
-            throw new NotImplementedException();
+            _menuItemList.Remove(GetMenuItemByNo(no));
+        }
+
+        public override string ToString()
+        {
+            string result = $"Der er {Count} genstande på menuen, de er:";
+            foreach (MenuItem menuItem in _menuItemList)
+            {
+                result += "\n" + menuItem.ToString();
+            }
+            return result;
         }
     }
 }

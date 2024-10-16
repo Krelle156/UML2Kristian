@@ -41,16 +41,32 @@ namespace PizzaLibrary.Services
 
         public void printAllCustomers()
         {
-            Console.WriteLine($"Der er {Count} kunder i systemet, de er:");
+            Console.WriteLine(ToString());
+        }
+
+        public List<Customer> AllClubMembersList()
+        {
+            List<Customer> resultList = new List<Customer>();
             foreach (Customer customer in _customers.Values)
             {
-                Console.WriteLine("\n"+customer.ToString());
+                if(customer.ClubMember) resultList.Add(customer);
             }
+            return resultList;
         }
 
         public void RemoveCustomer(string mobile)
         {
             _customers.Remove(mobile);
+        }
+
+        public override string ToString()
+        {
+            string result = $"Der er registreret {Count} kunder. De er:\n";
+            foreach (Customer customer in _customers.Values)
+            {
+                result += "\n" + customer.ToString();
+            }
+            return result;
         }
 
         #endregion
