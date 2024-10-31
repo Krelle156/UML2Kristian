@@ -1,4 +1,5 @@
-﻿using PizzaLibrary.Interfaces;
+﻿using PizzaLibrary.Exeptions;
+using PizzaLibrary.Interfaces;
 using PizzaLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace PizzaLibrary.Services
 
         public void AddCustomer(Customer customer)
         {
-            if (_customers.ContainsKey(customer.Mobile)) return;
+            if (_customers.ContainsKey(customer.Mobile)) throw new CustomerMobileNumberExistsException();
             _customers[customer.Mobile] = customer;
         }
 
@@ -61,6 +62,16 @@ namespace PizzaLibrary.Services
             foreach (Customer customer in _customers.Values)
             {
                 if(customer.ClubMember) resultList.Add(customer);
+            }
+            return resultList;
+        }
+
+        public List<Customer> FromRoskildeList()
+        {
+            List<Customer> resultList = new List<Customer>();
+            foreach (Customer customer in _customers.Values)
+            {
+                if (customer.Address.Contains("Roskilde") || customer.Address.Contains("4000")) resultList.Add(customer);
             }
             return resultList;
         }

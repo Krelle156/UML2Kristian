@@ -11,8 +11,4 @@
     <ProjectReference Include="..\PizzaLibrary\PizzaLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Customers\" />
-  </ItemGroup>
-
 </Project>

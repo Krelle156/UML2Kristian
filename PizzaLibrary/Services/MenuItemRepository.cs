@@ -50,6 +50,7 @@ namespace PizzaLibrary.Services
             return _menuItemList;
         }
 
+        #region "advanced" searches
         public List<MenuItem> GetAbovePrice(double price)
         {
             List<MenuItem> resultList = new List<MenuItem>();
@@ -59,6 +60,38 @@ namespace PizzaLibrary.Services
             }
             return resultList;
         }
+
+        public List<MenuItem> GetMenuItemsOfTypes(MenuType type)
+        {
+            return _menuItemList.FindAll(listObject => listObject.TheMenuType == type);
+        }
+
+        public MenuItem GetMostExpensiveItem()
+        {
+            MenuItem result = null;
+            foreach(MenuItem menuItem in _menuItemList)
+            {
+                if(result == null) result = menuItem;
+                else if(result.Price < menuItem.Price) result = menuItem;
+            }
+            return result;
+        }
+
+        public MenuItem GetMostExpensiveItem(MenuType type)
+        {
+            MenuItem result = null;
+            foreach (MenuItem menuItem in _menuItemList)
+            {
+                if (menuItem.TheMenuType == type)
+                {
+                    if (result == null) result = menuItem;
+                    else if (result.Price < menuItem.Price) result = menuItem;
+                }
+            }
+            return result;
+        }
+
+        #endregion
 
         public MenuItem GetMenuItemByNo(int no)
         {

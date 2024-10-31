@@ -1,5 +1,6 @@
 ﻿using ConsoleMenu.Controllers.MenuItems;
 using PizzaLibrary.Data;
+using PizzaLibrary.Models;
 using PizzaLibrary.Services;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace ConsoleMenu.Menu
 {
     public class UserMenu
     {
-        private static string mainMenuChoices = "\t1.Vis Pizzamenu\n\t2.Vis Kunder\n\t3.Add Customer\n\tQ.Afslut\n\n\tIndtast valg:";
+        private static string mainMenuChoices = "\t1.Vis Pizzamenu\n\t2.Vis Kunder\n\t3.Add Customer\n\t4.Add Pizza\n\tQ.Afslut\n\n\tIndtast valg:";
 
         private CustomerRepository _customerRepository = new CustomerRepository(MockData.CustomerData);
         private MenuItemRepository _menuItemRepository = new MenuItemRepository(MockData.MenuItemData);
@@ -58,6 +59,29 @@ namespace ConsoleMenu.Menu
                         //AddCustomerController addMenuItemController = new AddCustomerController(name, mobile, address, isClubMember, _customerRepository);
                         //addMenuItemController.AddCustomer();
                         break;
+                        /*
+                    case "4":
+                        Console.WriteLine("Valg 4");
+                        Console.WriteLine("Indlæs navnet på produktet:");
+                        string itemName = Console.ReadLine();
+                        Console.WriteLine("Fastslå en pris:");
+
+                        double price;
+                        if (double.TryParse(Console.ReadLine(), out double result))
+                        {
+                            price = result;
+                        }
+                        else break;
+
+                        Console.WriteLine("Beskriv produktet:");
+                        string description = Console.ReadLine();
+                        
+
+
+                        _menuItemRepository.AddMenuItem(new MenuItem(itemName, price, description));
+                        
+                        break;
+                        */
                     default:
                         Console.WriteLine("Angiv et tal fra 1..4 eller q for afslut");
                         break;
