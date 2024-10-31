@@ -36,8 +36,11 @@ namespace PizzaLibrary.Services
         {
             for(int i = 0;  i < _menuItemList.Count; i++)
             {
-                if (_menuItemList[i].TheMenuType == menuItem.TheMenuType) _menuItemList.Insert(i, menuItem); //The intention is to group the positions of the menuitems by type
-                return;
+                if (_menuItemList[i].TheMenuType == menuItem.TheMenuType)
+                {
+                    _menuItemList.Insert(i, menuItem); //The intention is to group the positions of the menuitems by type
+                    return;
+                }
             }
             _menuItemList.Add(menuItem);
         }

@@ -38,7 +38,7 @@ namespace ConsoleMenu.Menu
                         break;
                     case "2":
                         Console.WriteLine("Valg 2");
-                        //_customerRepository.PrintAllCustomers();
+                        _customerRepository.PrintAllCustomers();
                         Console.ReadLine();
                         break;
                     case "3":
@@ -52,6 +52,9 @@ namespace ConsoleMenu.Menu
                         Console.WriteLine("Vil du være clubmember y/n");
                         string clubMemberString = Console.ReadLine().ToLower();
                         bool isClubMember = (clubMemberString[0] == 'y') ? true : false;
+
+                        _customerRepository.AddCustomer(new PizzaLibrary.Models.Customer(name, mobile, address));//Why not just like this? Because of null?
+
                         //AddCustomerController addMenuItemController = new AddCustomerController(name, mobile, address, isClubMember, _customerRepository);
                         //addMenuItemController.AddCustomer();
                         break;

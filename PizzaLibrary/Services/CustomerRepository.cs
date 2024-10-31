@@ -50,7 +50,7 @@ namespace PizzaLibrary.Services
             return null;
         }
 
-        public void printAllCustomers()
+        public void PrintAllCustomers()
         {
             Console.WriteLine(ToString());
         }
