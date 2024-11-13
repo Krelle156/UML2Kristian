@@ -68,25 +68,71 @@ namespace PizzaLibrary.Services
 
         public MenuItem GetMostExpensiveItem()
         {
-            MenuItem result = null;
+            if (_menuItemList.Count == 0) return null;
+
+            MenuItem result = _menuItemList[0];
             foreach(MenuItem menuItem in _menuItemList)
             {
-                if(result == null) result = menuItem;
-                else if(result.Price < menuItem.Price) result = menuItem;
+                if(result.Price < menuItem.Price) result = menuItem;
             }
             return result;
         }
 
         public MenuItem GetMostExpensiveItem(MenuType type)
         {
+            if (_menuItemList.Count == 0) return null;
+
             MenuItem result = null;
-            foreach (MenuItem menuItem in _menuItemList)
+
+            int index = 0;
+            while (index < _menuItemList.Count && result == null)
             {
-                if (menuItem.TheMenuType == type)
+                if (_menuItemList[index].TheMenuType == type)
                 {
-                    if (result == null) result = menuItem;
-                    else if (result.Price < menuItem.Price) result = menuItem;
+                    result = _menuItemList[index];
                 }
+                index++;
+            }
+            while (index < _menuItemList.Count)
+            {
+                if (_menuItemList[index].TheMenuType == type && _menuItemList[index].Price > result.Price)
+                {
+                    result = _menuItemList[index];
+                }
+                index++;
+            }
+            return result;
+            return result;
+        }
+
+        public MenuItem GetMostExpensiveItem(MenuType[] type)
+        {
+            if (_menuItemList.Count == 0) return null;
+
+            MenuItem result = null;
+
+            int index = 0;
+            while(index < _menuItemList.Count && result == null)
+            {
+                foreach (MenuType menuType in type)
+                {
+                    if (_menuItemList[index].TheMenuType == menuType)
+                    {
+                        result = _menuItemList[index];
+                    }
+                }
+                index++;
+            }
+            while(index < _menuItemList.Count)
+            {
+                foreach (MenuType menuType in type)
+                {
+                    if (_menuItemList[index].TheMenuType == menuType && _menuItemList[index].Price > result.Price)
+                    {
+                        result = _menuItemList[index];
+                    }
+                }
+                index++;
             }
             return result;
         }

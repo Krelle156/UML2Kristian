@@ -32,7 +32,7 @@ internal class Program
         }
 
 
-        //UserMenu menu = new UserMenu();
-        //menu.ShowMenu();
+        UserMenu menu = new UserMenu();
+        menu.ShowMenu();
     }
 }

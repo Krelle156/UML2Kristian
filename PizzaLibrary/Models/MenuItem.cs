@@ -15,6 +15,12 @@ namespace PizzaLibrary.Models
         #endregion
 
         #region Constructors
+
+        public MenuItem()
+        {
+            
+        }
+
         public MenuItem(string name, double price, string description, MenuType menuType)
         {
             counter++;
