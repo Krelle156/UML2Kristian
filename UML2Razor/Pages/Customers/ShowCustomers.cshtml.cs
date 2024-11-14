@@ -15,7 +15,7 @@ namespace UML2Razor.Pages.Customers
 
         public ShowCustomersModel(ICustomerRepository customerRepository)
         {
-            _customerRepository = new CustomerRepository(MockData.CustomerData);
+            _customerRepository = customerRepository;
         }
 
         public void OnGet()

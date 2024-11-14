@@ -12,10 +12,16 @@ namespace PizzaLibrary.Models
     {
         #region Instance fields
         private int _id;
-        private static int counter;
+        private static int counter = 0;
         #endregion
 
         #region Constructors
+
+        public Customer()
+        {
+            _id = counter;
+            counter++;
+        }
         public Customer(string name, string mobile, string address)
         {
             _id = counter;
@@ -32,7 +38,7 @@ namespace PizzaLibrary.Models
         public string Address { get; set; }
         public bool ClubMember { get; set; }
 
-        public int ID { get { return counter; } }
+        public int ID { get { return _id; } }
 
         public string Mobile { get; set; }
         public string Name {  get; set; }
