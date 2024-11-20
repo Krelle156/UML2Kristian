@@ -18,7 +18,8 @@ namespace PizzaLibrary.Services
         #region Constructors
         public MenuItemRepository()
         {
-            _menuItemList = new List<MenuItem>();
+            //_menuItemList = new List<MenuItem>();
+            _menuItemList = MockData.MenuItemData;
         }
 
         public MenuItemRepository(List<MenuItem> repo)
@@ -153,6 +154,7 @@ namespace PizzaLibrary.Services
         public void RemoveMenuItem(int no)
         {
             _menuItemList.Remove(GetMenuItemByNo(no));
+
         }
 
         public override string ToString()

@@ -18,7 +18,8 @@ namespace PizzaLibrary.Models
 
         public MenuItem()
         {
-            
+            counter++;
+            _no = counter;
         }
 
         public MenuItem(string name, double price, string description, MenuType menuType)

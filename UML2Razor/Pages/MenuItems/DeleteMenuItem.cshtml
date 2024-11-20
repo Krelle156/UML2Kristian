@@ -1,0 +1,33 @@
+﻿@page
+@model UML2Razor.Pages.MenuItems.DeleteMenuItemModel
+@{
+    ViewData["Title"] = "Delete Menu Item";
+}
+
+<h1>Delete this item?</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.No" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.No" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.Name" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.Description" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.Price" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.Price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.MenuItem.TheMenuType" class="control-label"></label>
+        <input asp-for="@Model.MenuItem.TheMenuType" class="form-control" />
+    </div>
+    <div class="formgroup">
+        <input type="submit" value="Delete" class="btn btn-primary" />
+    </div>
+</form>

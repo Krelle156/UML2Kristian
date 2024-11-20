@@ -1,0 +1,28 @@
+﻿@page
+@model UML2Razor.Pages.Customers.EditCustomerModel
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="@Model.Name" class="control-label"></label>
+        <input asp-for="@Model.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.newMobile" class="control-label"></label>
+        <input asp-for="@Model.newMobile" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Address" class="control-label"></label>
+        <input asp-for="@Model.Address" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Clubmember" class="control-label"></label>
+        <input type="checkbox" name="ChooseClub" value="true"/>
+    </div>
+    <div class="formgroup">
+        <label asp-for="@Model.Name" class="control-label"></label>
+        <input type="submit" value="Create Customer" class="btn btn-primary" />
+    </div>
+</form>

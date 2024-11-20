@@ -35,8 +35,28 @@ namespace PizzaLibrary.Services
 
         public void AddCustomer(Customer customer)
         {
+            List<int> _IdsInUse = new List<int>();
+
+            foreach(Customer c in _customers.Values)
+            {
+                _IdsInUse.Add(c.ID);
+            }
+
+            _IdsInUse.Sort();
+
+            for(int i = 0; i<_IdsInUse.Count; i++)
+            {
+                if (i+1 != _IdsInUse[i])
+                {
+                    customer.ID = i + 1;
+                    break;
+                }
+            }
+            if (customer.ID == 0) customer.ID = _IdsInUse.Count + 1;
+
             if (_customers.ContainsKey(customer.Mobile)) throw new CustomerMobileNumberExistsException();
             _customers[customer.Mobile] = customer;
+
         }
 
 
@@ -78,7 +98,26 @@ namespace PizzaLibrary.Services
 
         public void RemoveCustomer(string mobile)
         {
+
             _customers.Remove(mobile);
+        }
+
+        public void EditCustomer(string name, string address, string newMobile, bool clubMember, string mobile)
+        {
+            if (_customers.ContainsKey(newMobile) && newMobile != mobile) throw new CustomerMobileNumberExistsException();
+
+            Customer tempRef = _customers[mobile];
+
+            tempRef.Name = name;
+            tempRef.Address = address;
+            tempRef.ClubMember = clubMember;
+
+            if(tempRef.Mobile != newMobile)
+            {
+                tempRef.Mobile = newMobile;
+                _customers.Remove(mobile);
+                _customers[newMobile] = tempRef;
+            }
         }
 
         public override string ToString()

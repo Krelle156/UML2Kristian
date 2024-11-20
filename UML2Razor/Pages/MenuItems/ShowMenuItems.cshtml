@@ -1,0 +1,36 @@
+﻿@page
+@model UML2Razor.Pages.MenuItems.ShowMenuItemsModel
+@{
+    ViewData["Title"] = "ShowMenuItems";
+}
+
+<h1>Number of items on the menu: @Model.MenuItems.Count</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MenuItems)
+        {
+            <tr>
+                <td>@item.No</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Description</td>
+                <td>@item.TheMenuType</td>
+                <td><a asp-page="EditMenuItem" asp-route-No="@item.No">Edit</a></td>
+                <td><a asp-page="DeleteMenuItem" asp-route-deleteNo="@item.No">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+
+    <btn>
+        <a class="nav-link text-dark bg-primary" asp-area="" asp-page="/Customers/AddCustomer">Add a customer</a>
+    </btn>
+</table>

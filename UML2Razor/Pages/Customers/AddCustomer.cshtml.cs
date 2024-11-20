@@ -11,11 +11,14 @@ namespace UML2Razor.Pages.Customers
     {
         private ICustomerRepository _repo;
 
+        private IWebHostEnvironment webHostEnvironment;
+
         [BindProperty] public Customer Customer { get; set; }
 
-        public AddCustomerModel(ICustomerRepository customerRepository)
+        public AddCustomerModel(ICustomerRepository customerRepository, IWebHostEnvironment webHost)
         {
             _repo = customerRepository;
+            webHostEnvironment = webHost;
         }
 
         public void OnGet()
@@ -25,8 +28,17 @@ namespace UML2Razor.Pages.Customers
 
         public IActionResult OnPost()
         {
+            
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
+            
+
+
             _repo.AddCustomer(Customer);
             return RedirectToPage("ShowCustomers");
         }
+
     }
 }
