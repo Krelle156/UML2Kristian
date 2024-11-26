@@ -9,6 +9,7 @@ namespace PizzaLibrary.Models
 {
     public class OrderLine : IOrderLine
     {
+
         private IMenuItem _menuItem;
 
         public OrderLine(IMenuItem item, int amount)
@@ -25,12 +26,18 @@ namespace PizzaLibrary.Models
             Comment = comment;
         }
 
+        public int Id { get; set; }
         public int Amount { get; set; }
         public string Comment { get; set; }
         public IMenuItem MenuItem
         {
             get { return _menuItem; }
             set { _menuItem = value; }
+        }
+
+        public void AddExtraAccessory(IAccessory accesory)
+        {
+            throw new NotImplementedException();
         }
 
         public double SubTotal()

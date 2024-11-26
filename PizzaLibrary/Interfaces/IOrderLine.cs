@@ -9,11 +9,12 @@ namespace PizzaLibrary.Interfaces
 {
     public interface IOrderLine
     {
+        int Id { get; set; }
         int Amount { get; set; }
         string Comment { get; set; }
         IMenuItem MenuItem { get; set; }
 
-        //void AddExtraAccessory(Acessory accesory);
+        void AddExtraAccessory(IAccessory accesory);
         double SubTotal();
         string ToString();
     }

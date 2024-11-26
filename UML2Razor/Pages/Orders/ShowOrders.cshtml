@@ -1,0 +1,14 @@
+﻿@page
+@using PizzaLibrary.Interfaces
+@model UML2Razor.Pages.Orders.ShowOrdersModel
+@{
+    ViewData["Title"] = "ShowOrders";
+}
+
+@{
+    if(Model.Orders != null && Model.Orders.Count>0) 
+    {
+        foreach(IOrderLine line in Model.Orders[Model.CurrentOrder].)
+    }
+
+}

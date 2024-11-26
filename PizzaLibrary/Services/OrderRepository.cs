@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PizzaLibrary.Data;
 using PizzaLibrary.Exeptions;
 using PizzaLibrary.Interfaces;
 
-namespace PizzaLibrary.Models
+namespace PizzaLibrary.Services
 {
     public class OrderRepository : IOrderRepository
     {
+        #region instance fields
         private List<IOrder> _orderList;
-
-        public int Count { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        #endregion
+        #region constructors
+        public OrderRepository()
+        {
+            _orderList = new List<IOrder>();
+        }
+        #endregion
+        public int Count { get { return _orderList.Count; } }
 
         public void AddOrder(IOrder order)
         {
@@ -26,13 +34,13 @@ namespace PizzaLibrary.Models
 
         public IOrder GetOrderById(int id)
         {
-            for(int i=id; i<_orderList.Count;i++)
+            for (int i = id; i < _orderList.Count; i++)
             {
-                if(_orderList[i].Id == id) return _orderList[i];
+                if (_orderList[i].Id == id) return _orderList[i];
             }
-            for(int i = 0; i<_orderList.Count-id;i++)
+            for (int i = 0; i < _orderList.Count - id; i++)
             {
-                if (_orderList[i].Id == id) return _orderList[i]; 
+                if (_orderList[i].Id == id) return _orderList[i];
             }
 
             throw new NoSuchItemFoundException();
@@ -40,7 +48,7 @@ namespace PizzaLibrary.Models
 
         public void PrintALlOrders()
         {
-            foreach(IOrder order in _orderList)
+            foreach (IOrder order in _orderList)
             {
                 Console.WriteLine(order.ToString());
             }

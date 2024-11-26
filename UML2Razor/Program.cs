@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
 builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>();
+builder.Services.AddSingleton<IShoppingCart, ShoppingCart>();
+builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 

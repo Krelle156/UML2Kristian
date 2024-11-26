@@ -1,0 +1,84 @@
+﻿@page
+@model UML2Razor.Pages.Orders.CreateOrderModel
+@{
+    ViewData["Title"] = "Create Order";
+}
+
+<h1>Select the customer</h1>
+
+<form method ="post" asp-page-handler="Customer">
+    <p>
+        Mobile : <input type = "text" asp-for="SearchCustomerMobile" />
+        <input type="submit" value ="Search Customer"/>
+    </p>
+</form>
+
+@{
+    if(Model.TheCustomer != null)
+    {
+        <h3>@Model.TheCustomer.Name</h3>
+        <h3>@Model.TheCustomer.Mobile</h3>
+    }
+}
+
+<h1>Add MenuItem to Order</h1>
+<form metod ="post" asp-page-handler = "AddToOrder">
+    <label>MenuItems</label>
+    <select id="ChosenItem" name="ChosenMenuitem"
+        asp-for="@Model.ChosenMenuItem"
+        asp-items="@Model.MenuItemSelectList">
+
+    </select>
+
+    <input type="number" asp-for="@Model.Amount"/>
+    <textarea asp-for="@Model.Comment" cols="120">
+    </textarea>
+
+    <input type ="submit" value="AddToOrder"/>
+</form>
+
+@{
+    if (Model.OrderLines != null && Model.OrderLines.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Comment</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (var item in Model.OrderLines)
+                    {
+                    <tr>
+                        <td>@item.MenuItem.Name</td>
+                        <td>@item.Amount</td>
+                        <td>@item.SubTotal()</td>
+                        <td>@item.Comment</td>
+                        <td>
+                            <form method="post" asp-page-handler="DeleteLine" asp-route-id="@item.Id">
+                                <p>
+                                    <input type="submit" value="Delete Order" />
+                                </p>
+                            </form>
+                        </td>
+                    </tr>
+                    }
+            </tbody>
+
+        </table>
+    }
+
+    <h3> <span class="text-danger">@Model.OrderWarningMSG</span></h3>
+
+    <form method="post" asp-page-handler="CreateOrder">
+        <p>
+            <input type="submit" value="Create Order" />
+        </p>
+    </form>
+}
+
+

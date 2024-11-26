@@ -8,7 +8,7 @@ namespace PizzaLibrary.Interfaces
 {
     public interface IOrderRepository
     {
-        int Count { get; set; }
+        int Count { get; }
 
         List<IOrder> GetAll();
         void AddOrder(IOrder order);

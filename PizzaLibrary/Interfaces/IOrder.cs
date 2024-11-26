@@ -10,7 +10,7 @@ namespace PizzaLibrary.Interfaces
     {
         int Id { get;}
         bool ToBeDelivered { get; set; }
-
+        List<IOrderLine> GetAllLines();
         void AddToOrder(IOrderLine line);
         double CalculateTotal();
         void PrintReceipt();
