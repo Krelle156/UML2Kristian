@@ -35,6 +35,12 @@ namespace PizzaLibrary.Models
         }
 
         #region methods
+
+        public List<IOrderLine> GetAllLines()
+        {
+            return new List<IOrderLine>(_lines);
+        }
+
         public void AddToOrder(IOrderLine line)
         {
             _lines.Add(line);

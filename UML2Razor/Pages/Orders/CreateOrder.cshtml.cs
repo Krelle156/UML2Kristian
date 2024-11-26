@@ -12,6 +12,7 @@ namespace UML2Razor.Pages.Orders
         private ICustomerRepository _cRepo;
         private IMenuItemRepository _mRepo;
         private IShoppingCart _sCart;
+        private IOrderRepository _oRepo; //remove the p
 
         [BindProperty]
         public string SearchCustomerMobile { get; set; }
@@ -34,11 +35,13 @@ namespace UML2Razor.Pages.Orders
         public CreateOrderModel(
             ICustomerRepository customerRepository,
             IMenuItemRepository menuItemRepository,
-            IShoppingCart shoppingCart)
+            IShoppingCart shoppingCart,
+            IOrderRepository orderRepository)
         {
             _cRepo = customerRepository;
             _mRepo = menuItemRepository;
             _sCart = shoppingCart;
+            _oRepo = orderRepository;
             createMenuSelectList();
 
             TheCustomer = _sCart.Customer;
@@ -91,7 +94,12 @@ namespace UML2Razor.Pages.Orders
             else if (OrderLines.Count < 1) OrderWarningMSG = "You have not added anything to the order";
             else
             {
-
+                Order tempOrder = new Order(_sCart.Customer);
+                foreach(OrderLine line in _sCart.GetAll())
+                {
+                    tempOrder.AddToOrder(line);
+                }
+                _oRepo.AddOrder(tempOrder);
                 return RedirectToPage("ShowOrders");
             }
             return Page();

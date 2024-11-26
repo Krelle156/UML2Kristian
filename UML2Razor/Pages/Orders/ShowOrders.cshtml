@@ -6,9 +6,8 @@
 }
 
 @{
-    if(Model.Orders != null && Model.Orders.Count>0) 
-    {
-        foreach(IOrderLine line in Model.Orders[Model.CurrentOrder].)
+    foreach(var line in Model.OrderLines) {
+        <p>@line.MenuItem.Name</p>
     }
 
 }
