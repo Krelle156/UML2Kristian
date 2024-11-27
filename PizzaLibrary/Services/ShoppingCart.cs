@@ -10,7 +10,6 @@ namespace PizzaLibrary.Services
 {
     public class ShoppingCart : IShoppingCart
     {
-        private List<int> IdsInUse = new List<int>();
         private List<IOrderLine> _orderLines;
 
         public Customer Customer { get; set; }
